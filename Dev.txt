@@ -1,0 +1,12 @@
+set saved to true in SaveMap()
+set to false if 
+	new tile placed
+	override loc
+
+
+TODO:
+check if loading same texture twice into res manager is prevented
+improve dragging in canvas
+implement zoom in mainPanel
+change window title to map file name
+display sprite sheet filename in info panel 
