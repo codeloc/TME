@@ -10,6 +10,16 @@ namespace DBUG
 	{
 		INFO, ERROR
 	};
+	template<typename T>
+	inline void Log(const tgui::Vector2<T>& obj)
+	{
+		std::cout << obj.x << " " << obj.y << std::endl;
+	}
+	template<typename S>
+	inline void Log(sf::Vector2<S> vec2)
+	{
+		std::cout << vec2.x << " " << vec2.y << std::endl;
+	}
 	inline void Log(const std::string& msg, Type type = Type::INFO)
 	{
 		switch (type)
@@ -53,12 +63,7 @@ namespace DBUG
 			break;
 		}
 	}
-	template<typename T>
-	inline void Log(sf::Vector2<T> vec2)
-	{
-		Log(vec2.x);
-		Log(vec2.y);
-	}
+	
 
 }
 

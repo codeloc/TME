@@ -2,14 +2,27 @@
 
 int main()
 {
-	Editor editor;
+	int fps = 0;
+	float timeCounter = 0.f;
+	sf::Clock clock;
 
 	
 
-	sf::RenderWindow window{ {1280, 720}, "TGUI example - SFML_GRAPHICS backend"};
-	editor.Init(window);
+	sf::RenderWindow window{ {1280, 720}, "TME"};
+	Editor editor(window);
 	while (window.isOpen())
 	{
+		float dt = clock.getElapsedTime().asSeconds();
+		clock.restart();
+		timeCounter += dt;
+		++fps;
+		if (timeCounter >= 1.f)
+		{
+			timeCounter -= timeCounter;
+			//std::cout << fps << std::endl;
+			fps = 0;
+		}
+
 		// Handle events //
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -18,13 +31,13 @@ int main()
 			{
 				window.close();
 			}
-
-			// Update //
-			editor.Update(event);
-
+			editor.HandleEvents(event);
 		}
+		// Update //
+		editor.Update();
+		
 		// Draw //
-		window.clear({ 66,64,62 });
+		window.clear({ 32,32,34 });
 		editor.Draw();
 		window.display();
 	}
