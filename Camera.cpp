@@ -71,11 +71,6 @@ void Camera::HandleEvents(sf::Event& event)
 	}
 }
 
-const sf::View& Camera::GetUpdatedView()
-{
-	return view;
-}
-
 float Camera::GetZoomLevel()
 {
 	return zoomLevel;

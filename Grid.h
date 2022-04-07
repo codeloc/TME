@@ -13,12 +13,9 @@ public:
 	void Draw(tgui::CanvasSFML& canvas);
 
 public:
-	std::string GetDebugSStream();
 	int GetClickedOnCellIndex(const sf::Vector2i& point);
 	void HandleEvents(sf::Event& event, sf::Vector2f ratio);
 public:
-	void SetHorizontalLength(float length);
-	void SetVerticalLength(float length);
 	void SetColor(sf::Color c);
 	void SetCellSize(int size);
 	void SetGridSize(sf::Vector2i size);;
@@ -29,8 +26,8 @@ private:
 	sf::RectangleShape hLine;
 	sf::RectangleShape vLine;
 	Camera& camera;
-	std::stringstream ss;
 
+	// used for scaling line width when resizing
 	sf::Vector2f ratio = { 1.f, 1.f };
 };
 

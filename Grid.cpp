@@ -8,7 +8,8 @@ Grid::Grid(int in_cellSize, sf::Vector2i in_gridSize, Camera& camera)
 {
 	hLine.setSize({ (float)cellSize * (float)gridSize.x, 2.f });
 	vLine.setSize({ 2.f, (float)cellSize * (float)gridSize.y });
-	SetColor(sf::Color::White);
+	vLine.setFillColor(sf::Color::White);
+	hLine.setFillColor(sf::Color::White);
 }
 
 void Grid::Upadate()
@@ -34,36 +35,18 @@ void Grid::Draw(tgui::CanvasSFML& canvas)
 	}
 }
 
-std::string Grid::GetDebugSStream()
-{
-	return ss.str();
-}
-
 int Grid::GetClickedOnCellIndex(const sf::Vector2i& mousePos)
 {
 	sf::Vector2f pos = camera.MapScreenToWorld((sf::Vector2f)mousePos);
 	sf::Vector2f offset = camera.GetOffset();
 	sf::Vector2f worldPos = pos - offset;
 	
-	int xLoc = (worldPos.x) / (cellSize); /// camera.GetZoomLevel()
+	int xLoc = (worldPos.x) / (cellSize);
 	int yLoc = (worldPos.y) / (cellSize);
 
 	int index = yLoc * gridSize.y + xLoc;
 	
-	if (!ss.str().empty())
-	{
-		ss.str("");
-	}
-	
-	ss << " !mousePos: " << mousePos.x << " " << mousePos.y << '\n'
-		<< " worldPos1: " << worldPos.x << " " << worldPos.y << '\n'
-		<< " zoomLevel: " << camera.GetZoomLevel() << '\n'
-		<< " Index: " << index << '\n'
-		<< " offset: " << offset.x << " " << offset.y << '\n'
-		<< " vCenter: " << camera.GetView().getCenter().x << " " << camera.GetView().getCenter().y << '\n';
-	
-
-
+	std::cout << index << std::endl;
 	return index;
 }
 
@@ -78,17 +61,6 @@ void Grid::HandleEvents(sf::Event& event, sf::Vector2f in_ratio)
 	{
 		ratio.y = 1.f;
 	}
-
-}
-
-void Grid::SetHorizontalLength(float length)
-{
-	hLine.setSize({ length, 1.f });
-}
-
-void Grid::SetVerticalLength(float length)
-{
-	vLine.setSize({ 1.f, length });
 }
 
 void Grid::SetColor(sf::Color c)

@@ -13,7 +13,7 @@ public:
 	void Init(const sf::RenderWindow& in_window, sf::View in_view);
 	void HandleEvents(sf::Event& event);
 
-	const sf::View& GetUpdatedView();
+public:
 	float GetZoomLevel();
 	sf::Vector2f GetOffset();
 	sf::Vector2f MapScreenToWorld(sf::Vector2f screenPoint);

@@ -20,13 +20,12 @@ private:
 	Map map;
 	Grid mainGrid;
 	tgui::CanvasSFML::Ptr canvas;
-	TMGui gui;
+	TMGui canvasManager;
 
 	sf::View currentView;
 	Camera camera;
 	sf::Vector2i currWinSize;
-	sf::Vector2i canvasOffset = { 10 ,35 };
-	tgui::MessageBox::Ptr dbug;
+	sf::Vector2i canvasPosition = { 10 ,35 };
 
 	sf::Vector2f ratio = { 1.f, 1.f };
 }; 
