@@ -27,5 +27,7 @@ private:
 	sf::Vector2i currWinSize;
 	sf::Vector2i canvasOffset = { 10 ,35 };
 	tgui::MessageBox::Ptr dbug;
+
+	sf::Vector2f ratio = { 1.f, 1.f };
 }; 
 

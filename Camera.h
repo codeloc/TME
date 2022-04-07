@@ -16,7 +16,7 @@ public:
 	const sf::View& GetUpdatedView();
 	float GetZoomLevel();
 	sf::Vector2f GetOffset();
-	sf::Vector2f MapScreenToWorld(sf::Vector2i screenPoint);
+	sf::Vector2f MapScreenToWorld(sf::Vector2f screenPoint);
 	sf::Vector2i MapWorldToScreen(sf::Vector2f worldPoint);
 	const sf::View& GetView();
 	const sf::Vector2f GetScreenCenter();

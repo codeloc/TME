@@ -11,11 +11,11 @@ public:
 	Grid(int cellSize, sf::Vector2i gridSize, Camera& camera);
 	void Upadate();
 	void Draw(tgui::CanvasSFML& canvas);
-	void Draw(sf::RenderTexture& rt);
 
 public:
 	std::string GetDebugSStream();
 	int GetClickedOnCellIndex(const sf::Vector2i& point);
+	void HandleEvents(sf::Event& event, sf::Vector2f ratio);
 public:
 	void SetHorizontalLength(float length);
 	void SetVerticalLength(float length);
@@ -30,5 +30,7 @@ private:
 	sf::RectangleShape vLine;
 	Camera& camera;
 	std::stringstream ss;
+
+	sf::Vector2f ratio = { 1.f, 1.f };
 };
 

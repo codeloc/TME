@@ -10,7 +10,7 @@ void Camera::Init(const sf::RenderWindow& in_window, sf::View in_view)
 	zoomLevel = 1.f;
 	auto canvasCenter = GetScreenCenter() * 0.7f;
 
-	zoomOffset = MapScreenToWorld(sf::Vector2i(canvasCenter.x + 0.5f, canvasCenter.y + 0.5f));
+	zoomOffset = MapScreenToWorld(sf::Vector2f(canvasCenter.x + 0.5f, canvasCenter.y + 0.5f));
 	moveOffset = { 0.f, 0.f };
 }
 
@@ -58,13 +58,13 @@ void Camera::HandleEvents(sf::Event& event)
 			view.zoom(0.9f);
 			zoomLevel *= 0.9f;
 		}
-		zoomOffset = MapScreenToWorld((sf::Vector2i)(GetScreenCenter() * 0.7f));
+		zoomOffset = MapScreenToWorld((sf::Vector2f)(GetScreenCenter() * 0.7f));
 		break;
 	case sf::Event::Resized:
 		// resize the window //
 		view.setSize(event.size.width * 0.7f, event.size.height * 0.7f);
 		view.zoom(zoomLevel);
-		zoomOffset = MapScreenToWorld((sf::Vector2i)(GetScreenCenter() * 0.7f));
+		zoomOffset = MapScreenToWorld((sf::Vector2f)(GetScreenCenter() * 0.7f));
 		break;
 
 	default: break;
@@ -86,14 +86,14 @@ sf::Vector2f Camera::GetOffset()
 	return zoomOffset - moveOffset;
 }
 
-sf::Vector2f Camera::MapScreenToWorld(sf::Vector2i screenPoint)
+sf::Vector2f Camera::MapScreenToWorld(sf::Vector2f screenPoint)
 {
-	return { (float)screenPoint.x * zoomLevel, (float)screenPoint.y * zoomLevel };
+	return { screenPoint.x * zoomLevel, screenPoint.y * zoomLevel };
 }
 
 sf::Vector2i Camera::MapWorldToScreen(sf::Vector2f worldPoint)
 {
-	return { int(worldPoint.x / zoomLevel), int(worldPoint.y / zoomLevel) };
+	return { int(worldPoint.x / zoomLevel + 0.5f), int(worldPoint.y / zoomLevel + 0.5f) };
 }
 
 const sf::View& Camera::GetView()

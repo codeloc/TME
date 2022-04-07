@@ -30,10 +30,10 @@ void Editor::HandleEvents(sf::Event& event)
 	case sf::Event::Resized:
 	{
 		sf::Vector2i newSize = { (int)event.size.width , (int)event.size.height };
+		ratio = sf::Vector2f((float)newSize.x / 1280.f, (float)newSize.y / 720.f);
 
-		sf::Vector2f ratios = sf::Vector2f((float)newSize.x / (float)currWinSize.x, (float)newSize.y / (float)currWinSize.y);
-
-		canvas->setPosition(canvas->getPosition().x / ratios.x, canvas->getPosition().y / ratios.y);
+		sf::Vector2f r = sf::Vector2f((float)newSize.x / currWinSize.x, (float)newSize.y / currWinSize.y);
+		canvas->setPosition(canvas->getPosition().x / r.x, canvas->getPosition().y / r.y);
 		currWinSize = newSize;
 	}
 		//canvas->setSize((float)event.size.width * 0.7f,(float)event.size.height * 0.7f);
@@ -49,6 +49,8 @@ void Editor::HandleEvents(sf::Event& event)
 		break;
 	}
 	camera.HandleEvents(event);
+	mainGrid.HandleEvents(event, ratio);
+	
 }
 
 void Editor::Update()
