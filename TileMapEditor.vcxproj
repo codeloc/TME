@@ -79,8 +79,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\can\Desktop\Programierzeug\SFML-2.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\can\Desktop\Programierzeug\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)dependencies\SFML\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dependencies\SFML\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)build</OutDir>
     <IntDir>bin\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -93,8 +93,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\can\Desktop\Programierzeug\SFML-2.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\can\Desktop\Programierzeug\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)dependencies\SFML\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dependencies\SFML\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)build</OutDir>
     <IntDir>bin\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -183,6 +183,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
+    <ClCompile Include="src\SpriteAtlas.cpp" />
     <ClCompile Include="src\TMGui.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +193,7 @@
     <ClInclude Include="include\Grid.h" />
     <ClInclude Include="include\Map.h" />
     <ClInclude Include="include\ResourceManager.h" />
+    <ClInclude Include="include\SpriteAtlas.h" />
     <ClInclude Include="include\TMGui.h" />
     <ClInclude Include="include\Utils.h" />
   </ItemGroup>

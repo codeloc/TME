@@ -8,8 +8,8 @@
 class Grid
 {
 public:
-	Grid(int cellSize, sf::Vector2i gridSize, Camera& camera);
-	void Upadate();
+	Grid(int cellSize, int cellScale, sf::Vector2i gridSize, Camera& camera);
+	void Update();
 	void Draw(tgui::CanvasSFML& canvas);
 
 public:
@@ -21,7 +21,8 @@ public:
 	void SetGridSize(sf::Vector2i size);;
 
 private:
-	int cellSize = 64;
+	int cellSize = 16;
+	int cellScale = 4;
 	sf::Vector2i gridSize = { 10,10 };
 	sf::RectangleShape hLine;
 	sf::RectangleShape vLine;

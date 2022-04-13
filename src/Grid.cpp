@@ -1,8 +1,9 @@
 #include "Grid.h"
 
-Grid::Grid(int in_cellSize, sf::Vector2i in_gridSize, Camera& camera)
+Grid::Grid(int in_cellSize, int in_cellScale, sf::Vector2i in_gridSize, Camera& camera)
 	:
 	cellSize(in_cellSize),
+	cellScale(in_cellScale),
 	gridSize(in_gridSize),
 	camera(camera)
 {
@@ -12,11 +13,11 @@ Grid::Grid(int in_cellSize, sf::Vector2i in_gridSize, Camera& camera)
 	hLine.setFillColor(sf::Color::White);
 }
 
-void Grid::Upadate()
+void Grid::Update()
 {	
 	sf::Vector2f scaledLineWidth = camera.MapScreenToWorld({ 2.f, 2.f  }); // resize event * ratio
-	hLine.setSize({ (float)cellSize * (float)gridSize.x, scaledLineWidth.y * ratio.y });
-	vLine.setSize({ scaledLineWidth.x * ratio.x , (float)cellSize * (float)gridSize.y });
+	hLine.setSize({ (float)cellSize * (float)cellScale * (float)gridSize.x, scaledLineWidth.y * ratio.y });
+	vLine.setSize({ scaledLineWidth.x * ratio.x , (float)cellSize * (float)cellScale * (float)gridSize.y });
 }
 
 void Grid::Draw(tgui::CanvasSFML& canvas)
@@ -24,13 +25,13 @@ void Grid::Draw(tgui::CanvasSFML& canvas)
 	for (int x = 0; x <= gridSize.x; x++)
 	{
 		sf::Vector2f worldPos = camera.MapScreenToWorld(sf::Vector2f{ (float)x * (float)cellSize, 0.f });
-		vLine.setPosition({ (float)x * (float)cellSize, 0 });
+		vLine.setPosition({ (float)x * (float)cellScale * (float)cellSize, 0 });
 		canvas.draw(vLine);
 	}
 	for (int y = 0; y <= gridSize.y; y++)
 	{
 		sf::Vector2f worldPos = camera.MapScreenToWorld(sf::Vector2f{ 0.f,(float)y * (float)cellSize });
-		hLine.setPosition({ 0, (float)y * (float)cellSize });
+		hLine.setPosition({ 0, (float)y * (float)cellScale * (float)cellSize });
 		canvas.draw(hLine);
 	}
 }
@@ -41,8 +42,8 @@ int Grid::GetClickedOnCellIndex(const sf::Vector2i& mousePos)
 	sf::Vector2f offset = camera.GetOffset();
 	sf::Vector2f worldPos = pos - offset;
 	
-	int xLoc = (worldPos.x) / (cellSize);
-	int yLoc = (worldPos.y) / (cellSize);
+	int xLoc = (worldPos.x) / (cellSize * cellScale);
+	int yLoc = (worldPos.y) / (cellSize * cellScale);
 
 	int index = yLoc * gridSize.y + xLoc;
 	

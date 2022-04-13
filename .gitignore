@@ -10,7 +10,7 @@
 *.userosscache
 *.sln.docstates
 bin/*/*
-
+cmm-bup
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

@@ -76,4 +76,22 @@ namespace util
 	{
 		return val1 + val2;
 	}
+
+	class FilePath
+	{
+	public:
+		void SetFilePath(std::string fullpath) { MAP_FILE_PATH = fullpath; }
+		void SetFileDir(std::string fileDir) { MAP_FILE_DIR = fileDir; }
+		void SetFileName(std::string fileName)	{ MAP_FILE_NAME = fileName; }
+
+		std::string GetFilePath() { return MAP_FILE_PATH; }
+		std::string GetFileDir() { return MAP_FILE_DIR; }
+		std::string GetFileName() { return MAP_FILE_NAME; }
+
+		bool IsEmpty() { return MAP_FILE_PATH == ""; }
+	private:
+		std::string MAP_FILE_PATH = ""; // DIR + NAME
+		std::string MAP_FILE_DIR = "";
+		std::string MAP_FILE_NAME = "";
+	};
 }

@@ -14,5 +14,8 @@ public:
 private:
 	tgui::Gui gui;
 	sf::RenderWindow* window;
+public:
+	tgui::Color backgroundColor = { 32,32,34 };
+	tgui::Color selectedBackgroundColor = { 82,82,84 };
 };
 
